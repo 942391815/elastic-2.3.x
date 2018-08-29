@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:elasticsearch="http://www.springframework.org/schema/data/elasticsearch"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/data/elasticsearch
+       http://www.springframework.org/schema/data/elasticsearch/spring-elasticsearch-1.0.xsd">
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+    <elasticsearch:repositories base-package="com.doudou.demo.repositories"/>
+
+    <elasticsearch:transport-client id="es.transport.client"
+                                    cluster-nodes="177.177.177.177:9300,177.177.177.176:9300"
+                                    cluster-name="DouDouCluster"
+                                    client-transport-sniff="false"/>
+    <bean name="elasticsearchTemplate" class="org.springframework.data.elasticsearch.core.ElasticsearchTemplate">
+        <constructor-arg name="client" ref="es.transport.client"/>
+    </bean>
+    <bean id="simpleElasticsearchRepository"
+          class="org.springframework.data.elasticsearch.repository.support.SimpleElasticsearchRepository">
+        <constructor-arg name="elasticsearchOperations" ref="elasticsearchTemplate"/>
+    </bean>
+</beans>

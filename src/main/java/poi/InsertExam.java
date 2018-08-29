@@ -18,9 +18,12 @@ import java.util.Map;
  */
 public class InsertExam {
     public static void main(String[] args) throws Exception {
-        FileInputStream fis = new FileInputStream(new File("D:\\20160807172927448.xls"));
-        List<Map<String, String>> list = TestPoi.analysisExcel(fis);
-        insertExamBulk(list);
+        for(int i=0;i<1000;i++){
+            FileInputStream fis = new FileInputStream(new File("D:\\20160807172927448.xls"));
+            List<Map<String, String>> list = TestPoi.analysisExcel(fis);
+            insertExamBulk(list);
+
+        }
     }
 
     private static void insertExam(Map<String,String> map ) throws ParseException {

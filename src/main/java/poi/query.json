@@ -1,0 +1,34 @@
+{
+  "bool": {
+    "must": [
+      {
+        "terms": {
+          "job_code": [
+            "160101",
+            "160102"
+          ]
+        }
+      },
+      {
+        "range": {
+          "written_score": {
+            "from": 84.3,
+            "to": null,
+            "include_lower": true,
+            "include_upper": true
+          }
+        }
+      },
+      {
+        "range": {
+          "Interview_score": {
+            "from": 82.2,
+            "to": null,
+            "include_lower": true,
+            "include_upper": true
+          }
+        }
+      }
+    ]
+  }
+}
